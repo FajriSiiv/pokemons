@@ -1,26 +1,40 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
-  box-sizing: border-box;
+  font-family: "Montserrat";
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.normal {
+  background: rgb(36, 36, 36);
+}
+.grass {
+  background: #52b788;
+}
+.water {
+  background: #168aad;
+}
+.fire {
+  background: #f25c54;
+}
+.bug {
+  background: #c38e70;
+}
+.dark {
+  background: #2b2d42;
+}
+.fairy {
+  background: #e5e5e5;
+}
+.electric {
+  background: #ffd100;
+}
+.poison {
+  background: #6247aa;
+}
+.ground {
+  background: #582f0e;
 }
