@@ -25,7 +25,6 @@ export default function Home({ data, pokemons, descPokemon }) {
       setFilter(filterPoke);
     }
   };
-  console.log(filter);
 
   return (
     <div className="py-4">
