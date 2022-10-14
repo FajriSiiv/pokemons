@@ -2,23 +2,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
-export default function Pokemon() {
-  const [pokemon, setPokemon] = useState([]);
-  const router = useRouter();
-  const { id } = router.query;
-
-  useEffect(() => {
-    const getData = async () => {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-      const data = await response.json();
-      setPokemon(data);
-    };
-    getData();
-    console.log(pokemon);
-  }, []);
+export default function Pokemon({ data }) {
+  console.log(data);
+  const [pokemon, setPokemon] = useState(data);
 
   return (
-    <div className={`  h-  max-h-[1000px]`}>
+    <div className={` ${pokemon.types[0].type.name} max-h-[1000px]`}>
       <button>
         <Link href={"/"}>Back</Link>
       </button>
@@ -52,4 +41,17 @@ export default function Pokemon() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const response = await fetch(
+    `https://pokeapi.co/api/v2/pokemon/${context.params.id}`
+  );
+  const data = await response.json();
+
+  return {
+    props: {
+      data,
+    },
+  };
 }
