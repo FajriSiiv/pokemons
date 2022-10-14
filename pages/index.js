@@ -32,7 +32,7 @@ export default function Home({ data, pokemons, descPokemon }) {
       <div className="grid grid-cols-2 gap-1 px-2">
         {filter &&
           filter.map((monster, index) => (
-            <li key={index} className="list-none">
+            <li key={index} className="list-none w-full">
               <Link href={`/detail/` + monster.name}>
                 <div
                   className={`h-20 grid grid-cols-5 p-2 bg-rose-500 text-white rounded-xl justify-items-center items-center relative ${monster.types[0].type.name} `}
@@ -64,6 +64,7 @@ export default function Home({ data, pokemons, descPokemon }) {
                       src={Pokeball}
                       width={60}
                       height={60}
+                      alt="Pokeball"
                     />
                   </div>
                 </div>
@@ -75,7 +76,7 @@ export default function Home({ data, pokemons, descPokemon }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const res = await fetch("https://pokeapi.co/api/v2/type");
   const data = await res.json();
 
