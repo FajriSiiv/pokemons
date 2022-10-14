@@ -34,12 +34,7 @@ export default function Home({ data, pokemons, descPokemon }) {
         {filter &&
           filter.map((monster, index) => (
             <li key={index} className="list-none">
-              <Link
-                href={{
-                  pathname: "/detail/[name]",
-                  query: { name: monster.name },
-                }}
-              >
+              <Link href={`/detail/` + monster.name}>
                 <div
                   className={`h-20 grid grid-cols-5 p-2 bg-rose-500 text-white rounded-xl justify-items-center items-center relative ${monster.types[0].type.name} `}
                 >
