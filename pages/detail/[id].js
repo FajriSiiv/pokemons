@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import ProgressBar from "@ramonak/react-progress-bar";
 import Evolution from "../../components/Evolution";
 import Moves from "../../components/Moves";
+import About from "../../components/About";
+import Stats from "../../components/Stats";
 
 export default function Pokemon({ data }) {
   const [pokemon, setPokemon] = useState(data);
@@ -9,56 +10,6 @@ export default function Pokemon({ data }) {
   const [evo, setEvo] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const About = ({ data }) => {
-    return (
-      <div className="grid grid-cols-5 capitalize gap-y-2 font-medium text-sm sm:text-base md:text-lg md:gap-y-4">
-        <p className="col-span-2">Species</p>
-        <p className="col-span-3">{data.species.name}</p>
-        <p className="col-span-2">Height</p>
-        <p className="col-span-3">{data.height} cm</p>
-        <p className="col-span-2">Weight</p>
-        <p className="col-span-3">{data.weight} lbs</p>
-        <p className="col-span-2">Abilities</p>
-        <p className="col-span-3 ">
-          {data.abilities.map((e, i) => (
-            <span key={i} className="mr-1 capitalize">
-              {e.ability.name},
-            </span>
-          ))}
-        </p>
-      </div>
-    );
-  };
-
-  const Stats = ({ stats }) => {
-    return (
-      <div key={stats.stats} className="w-full text-sm sm:text-base md:text-lg">
-        {stats.stats.map((e, i) => (
-          <div
-            className="grid grid-cols-5 capitalize mb-2 sm:mb-3 md:mb-4"
-            key={i}
-          >
-            <h2 className="col-span-2 font-medium ">
-              {e.stat.name.includes("special-")
-                ? `Sp.${e.stat.name.split("-")[1]}`
-                : e.stat.name}
-            </h2>
-            <div className="flex flex-nowrap w-full items-center gap-x-2 col-span-3">
-              <p className="">{e.base_stat}</p>
-              <div className="w-full ">
-                <ProgressBar
-                  completed={e.base_stat}
-                  height="5px"
-                  customLabel=" "
-                  bgColor="#dc2f02"
-                />
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  };
   const lists = ["About", "Base Stats", "Evolution", "Moves"];
 
   const activeClick = (e) => {
@@ -81,7 +32,7 @@ export default function Pokemon({ data }) {
 
   return (
     <div
-      className={` ${pokemon.types[0].type.name} max-h-[1000px] max-w-[800px] mx-auto`}
+      className={` ${pokemon.types[0].type.name} max-h-[1000px] max-w-[800px] mx-auto sm:max-h-[2000px] `}
     >
       <div className="text-white flex justify-between items-center p-3">
         <div>
@@ -101,7 +52,7 @@ export default function Pokemon({ data }) {
         </div>
         <p className="font-bold sm:text-2xl">#0{pokemon.id}</p>
       </div>
-      <div className="flex flex-col ">
+      <div className="flex flex-col">
         <div className="z-10">
           <img
             src={pokemon.sprites.other.dream_world.front_default}
@@ -109,7 +60,7 @@ export default function Pokemon({ data }) {
             className="w-[210px] h-[270px] object-contain mx-auto"
           />
         </div>
-        <div className="bg-white h-[300px] mt-[-20px] rounded-t-3xl py-6 px-4">
+        <div className="bg-white h-[300px] mt-[-20px] rounded-t-3xl py-6 px-4 sm:mx-10 sm:h-full">
           <div className="flex text-sm justify-between font-medium  sm:text-lg md:text-xl">
             {lists.map((e) => (
               <div
